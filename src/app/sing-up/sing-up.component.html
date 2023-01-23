@@ -1,0 +1,47 @@
+<div class="formulaire">
+  
+  <form (ngSubmit)="myForm.valid && onSubmit() " #myForm="ngForm">
+  
+    <div>
+      <label for="firstName">Firstname :</label>
+      <input id="firstName" name="firstName" type="text" required [(ngModel)]="model.firstName" #firstName="ngModel" minlength="3" maxlength="15">
+    </div>
+    <div *ngIf="myForm.submitted" class="invalid">
+      <span *ngIf="firstName.errors?.['required']">* Le nom est requis</span>
+      <span *ngIf="firstName.errors?.['minlength']">* Le nom doit comporter au moins 3 caractères.</span>
+      <span *ngIf="firstName.errors?.['maxlength']">* Le nom ne doit pas dépasser 15 caractères. </span>
+    </div>
+    
+    <div>
+      <label for="lastName">Lastname :</label>
+      <input id="lastName" name="lastName" type="text" required [(ngModel)]="model.lastName" #lastName="ngModel" minlength="3" maxlength="15">
+    </div>
+    <div *ngIf="myForm.submitted" class="invalid">
+      <span *ngIf="lastName.errors?.['required']">* Le prénom requis </span>
+      <span *ngIf="lastName.errors?.['minlength']">* Le prénom doit comporter au moins 3 caractères. </span>
+      <span *ngIf="lastName.errors?.['maxlength']">* Le prénom ne doit pas dépasser 15 caractères.  </span>
+    </div>
+    
+    <div>
+      <label for="email" >Email :</label>
+      <input id="email" name="email" type="email" required email [(ngModel)]="model.email" #email="ngModel" required >
+    </div>
+    
+    <div *ngIf="myForm.submitted" class="invalid">
+      <span *ngIf="email.errors?.['required']" >* L'email est requis</span>
+      <span *ngIf="email.errors?.['email']" >* L'email est invalide</span>
+    </div>
+    <div>
+      <label for="password">Password : </label>
+      <input id="password" name="password" type="password"  [(ngModel)]="model.password" #password="ngModel" minlength="5" required>
+    </div>
+    <div *ngIf="myForm.submitted" class="invalid">
+      <span *ngIf="password.errors?.['required']">* Le mot de passe est requis</span>
+      <span *ngIf="password.errors?.['minlength']">* Le mot de passe doit comporter au moins 5 caractères.</span>
+    </div>
+  
+    <button type="submit">Submit</button>
+    
+  </form>
+
+</div>
